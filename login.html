@@ -1,0 +1,194 @@
+
+<!doctype html>
+<html>
+<head>
+    <title>Login</title>
+    <style>
+        /* Reset some default styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: #e0e5ec;
+            color: #333;
+            line-height: 1.6;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url("https://media.licdn.com/dms/image/C4D12AQHo-AxxoN_JcA/article-cover_image-shrink_720_1280/0/1647248567924?e=2147483647&v=beta&t=pu60Q_4kCqtorwnggWfaOwxlpdDyNEiSpltx2KRmHRc") no-repeat center center/cover;
+            z-index: -1;
+        }
+
+        /* Logout button */
+        .logout-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: #ffffff;
+            border: 2px solid #6c5ce7;
+            border-radius: 50%;
+            font-size: 0; /* Hide any text inside the button */
+            cursor: pointer;
+            color: #6c5ce7;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, color 0.3s;
+            z-index: 1000; /* Ensure the button is above other content */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .logout-btn::before {
+            content: '';
+            display: block;
+            width: 24px;
+            height: 24px;
+            border: solid #6c5ce7;
+            border-width: 4px 4px 0 0;
+            transform: rotate(45deg);
+            margin: 4px; /* Center arrow within the button */
+        }
+
+        .container {
+            width: 90%;
+            max-width: 600px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        header {
+            background: #ffffff;
+            color: #333;
+            padding: 20px 0;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+            box-shadow: 8px 8px 16px #b9bec1, -8px -8px 16px #ffffff;
+            width: 100%;
+        }
+
+        header h1 {
+            margin-bottom: 0;
+        }
+
+        form {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 8px 8px 16px #b9bec1, -8px -8px 16px #ffffff;
+            width: 100%;
+            margin: 20px auto;
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 10px;
+            color: #555;
+            font-weight: 500;
+        }
+
+        form input[type="text"],
+        form input[type="password"],
+        form input[type="email"] {
+            width: calc(100% - 24px);
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background: #f9f9f9;
+            color: #333;
+            box-shadow: inset 4px 4px 8px #b9bec1, inset -4px -4px 8px #ffffff;
+        }
+
+        form button {
+            background-color: #6c5ce7;
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+
+        form button:hover {
+            background-color: #5a4fbf;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            background: #ffffff;
+            margin-top: 20px;
+            border-top: 1px solid #ddd;
+            box-shadow: 8px 8px 16px #b9bec1, -8px -8px 16px #ffffff;
+        }
+
+        footer p {
+            color: #777;
+        }
+
+        .flashes {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+
+        .flash {
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .flash.success {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .flash.danger {
+            background: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+    <!-- Logout Button with Thick Arrow -->
+    <button class="logout-btn" onclick="window.location.href='{{ url_for('logout') }}'">Logout</button>
+
+    <div class="container">
+        <header>
+            <h1>Login</h1>
+        </header>
+        <form method="post">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+</body>
+</html>
